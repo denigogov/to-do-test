@@ -3,7 +3,11 @@ import FormItems from "./FormItems";
 
 const Form = ({ btnName }) => {
   const [messages, setMessages] = useState(() => {
-    return JSON.parse(localStorage.getItem("array"));
+    const result = JSON.parse(localStorage.getItem("array"));
+    if (Array.isArray(result))
+      return result;
+    else
+      return [];
   });
   const [userInput, setuserInput] = useState("");
 
