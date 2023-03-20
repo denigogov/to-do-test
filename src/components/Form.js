@@ -2,16 +2,14 @@ import { useState, useEffect } from "react";
 import FormItems from "./FormItems";
 
 const Form = ({ btnName }) => {
-  const [messages, setMessages] = useState([]);
-  const [userInput, setuserInput] = useState("");
-
-  const [local, setLocal] = useState(() => {
+  const [messages, setMessages] = useState(() => {
     return JSON.parse(localStorage.getItem("array"));
   });
+  const [userInput, setuserInput] = useState("");
 
   useEffect(() => {
-    localStorage.setItem("array", JSON.stringify(local));
-  }, [local]);
+    localStorage.setItem("array", JSON.stringify(messages));
+  }, [messages]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -19,7 +17,6 @@ const Form = ({ btnName }) => {
     if (userInput !== "") {
       setMessages([...messages, userInput]);
       setuserInput("");
-      setLocal([...messages, userInput]);
     } else return;
   };
 
